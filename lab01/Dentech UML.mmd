@@ -103,16 +103,6 @@ class InvoiceDetail {
   +decimal SubTotal
 }
 
-class Payment {
-  +int PaymentId
-  +date PaymentDate
-  +decimal Amount
-  +string Method
-  +string ReferenceNumber
-}
-
 Patient "1" --> "0..*" Invoice
 Invoice "1" --> "1..*" InvoiceDetail
-Invoice "1" --> "0..*" Payment
-
 ProcedureRecord "1" --> "0..1" InvoiceDetail : charged
