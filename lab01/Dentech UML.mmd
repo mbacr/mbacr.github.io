@@ -1,0 +1,118 @@
+classDiagram
+
+class Patient {
+  +int PatientId
+  +string FirstName
+  +string LastName
+  +date DateOfBirth
+  +string Phone
+  +string Email
+  +string Address
+  +string BloodType
+  +string Allergies
+}
+
+class Allergy {
+  +int AllergyId
+  +string Allergen
+  +string Reaction
+  +string Severity
+}
+
+class Dentist {
+  +int DentistId
+  +string FirstName
+  +string LastName
+  +string LicenseNumber
+  +string Specialty
+  +string Phone
+  +string Email
+}
+
+class Staff {
+  +int StaffId
+  +string Name
+  +string Role
+  +string Phone
+  +string Email
+}
+
+class Appointment {
+  +int AppointmentId
+  +datetime StartTime
+  +datetime EndTime
+  +string Status
+  +string Notes
+}
+
+Patient "1" --> "0..*" Allergy : has
+Patient "1" --> "0..*" Appointment : books
+Dentist "1" --> "0..*" Appointment : attends
+Staff "0..1" --> "0..*" Appointment : assists
+
+class Treatment {
+  +int TreatmentId
+  +string Name
+  +string Description
+  +decimal BaseCost
+}
+
+class ProcedureRecord {
+  +int RecordId
+  +date DatePerformed
+  +string ToothNumber
+  +string Surface
+  +string ClinicalNotes
+  +decimal FinalCost
+}
+
+class Prescription {
+  +int PrescriptionId
+  +date DateIssued
+  +string Medication
+  +string Dosage
+  +string Instructions
+}
+
+Appointment "1" --> "0..*" ProcedureRecord : includes
+Treatment "1" --> "0..*" ProcedureRecord : type
+Dentist "1" --> "0..*" ProcedureRecord : performs
+Patient "1" --> "0..*" Prescription : receives
+Dentist "1" --> "0..*" Prescription : writes
+
+class Tooth {
+  +int ToothNumber
+  +string Condition
+  +string Notes
+}
+
+Patient "1" --> "0..32" Tooth : has
+
+class Invoice {
+  +int InvoiceId
+  +date IssueDate
+  +decimal TotalAmount
+  +string Status
+}
+
+class InvoiceDetail {
+  +int ItemId
+  +string Description
+  +int Quantity
+  +decimal UnitPrice
+  +decimal SubTotal
+}
+
+class Payment {
+  +int PaymentId
+  +date PaymentDate
+  +decimal Amount
+  +string Method
+  +string ReferenceNumber
+}
+
+Patient "1" --> "0..*" Invoice
+Invoice "1" --> "1..*" InvoiceDetail
+Invoice "1" --> "0..*" Payment
+
+ProcedureRecord "1" --> "0..1" InvoiceDetail : charged
