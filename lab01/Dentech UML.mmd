@@ -12,13 +12,6 @@ class Patient {
   +string Allergies
 }
 
-class Allergy {
-  +int AllergyId
-  +string Allergen
-  +string Reaction
-  +string Severity
-}
-
 class Dentist {
   +int DentistId
   +string FirstName
@@ -45,7 +38,6 @@ class Appointment {
   +string Notes
 }
 
-Patient "1" --> "0..*" Allergy : has
 Patient "1" --> "0..*" Appointment : books
 Dentist "1" --> "0..*" Appointment : attends
 Staff "0..1" --> "0..*" Appointment : assists
@@ -54,16 +46,13 @@ class Treatment {
   +int TreatmentId
   +string Name
   +string Description
-  +decimal BaseCost
 }
 
 class ProcedureRecord {
   +int RecordId
   +date DatePerformed
-  +string ToothNumber
-  +string Surface
   +string ClinicalNotes
-  +decimal FinalCost
+  +decimal Price
 }
 
 class Prescription {
@@ -79,30 +68,3 @@ Treatment "1" --> "0..*" ProcedureRecord : type
 Dentist "1" --> "0..*" ProcedureRecord : performs
 Patient "1" --> "0..*" Prescription : receives
 Dentist "1" --> "0..*" Prescription : writes
-
-class Tooth {
-  +int ToothNumber
-  +string Condition
-  +string Notes
-}
-
-Patient "1" --> "0..32" Tooth : has
-
-class Invoice {
-  +int InvoiceId
-  +date IssueDate
-  +decimal TotalAmount
-  +string Status
-}
-
-class InvoiceDetail {
-  +int ItemId
-  +string Description
-  +int Quantity
-  +decimal UnitPrice
-  +decimal SubTotal
-}
-
-Patient "1" --> "0..*" Invoice
-Invoice "1" --> "1..*" InvoiceDetail
-ProcedureRecord "1" --> "0..1" InvoiceDetail : charged
