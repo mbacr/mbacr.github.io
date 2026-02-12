@@ -1,0 +1,51 @@
+.btn {
+        color: white;
+        border: 2px solid #e88a16;
+        padding: 10px 15px;
+        background-color: #e88a16;
+      }
+
+      body.active {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+      }
+
+      .active h1 {
+        color: #333;
+      }
+
+      .active table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .active th,
+      .active td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+
+      .active th {
+        background: #209cee;
+        color: white;
+      }
+
+      .active a {
+        color: #0b3c5d;
+        font-weight: bold;
+        color: #0066cc;
+        text-decoration: none;
+      }
+      
+      .active a:hover {
+        text-decoration: underline;
+      }
+
+      .active img {
+        display: block;
+        margin: 20px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        max-width: 100%;
+      }
