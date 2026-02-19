@@ -59,3 +59,12 @@ form {
   padding: 20px;
   border-radius: 10px;
 }
+.checkbox-group{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 150px; 
+  font-style: italic;
+  font-weight: 500;
+  color: #333;
+}
