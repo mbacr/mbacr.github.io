@@ -1,0 +1,37 @@
+#sidebar {
+  width: 240px;
+  min-height: 100vh;
+  z-index: 100;
+}
+
+#sidebar .nav-link {
+  border-radius: 6px;
+  margin-bottom: 2px;
+  transition: background-color 0.2s;
+}
+
+#sidebar .nav-link:hover,
+#sidebar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+/* Login page */
+.login-body {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+}
