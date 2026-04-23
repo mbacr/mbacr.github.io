@@ -15,21 +15,26 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Debug: fetch all staff to see what's stored
-  const { data: allStaff, error: debugError } = await supabase.from("Staff").select("*");
-  console.log("All staff records:", allStaff);
-  console.log("Trying email:", email, "password:", password);
+  const { data, error } = await supabase
+    .from("Staff")
+    .select("id, name, email")
+    .eq("email", email)
+    .eq("password", password)
+    .limit(1);
 
-  if (debugError) {
-    Swal.fire({ icon: "error", title: "Error", text: debugError.message });
+  if (error) {
+    Swal.fire({ icon: "error", title: "Error", text: error.message });
     return;
   }
 
-  const match = allStaff.find((s) => s.email === email && s.password === password);
+  const match = data && data[0];
 
   if (!match) {
-    const emails = (allStaff || []).map((s) => `${s.email} (pwd: ${s.password ? "set" : "empty"})`).join(", ");
-    Swal.fire({ icon: "error", title: "No match", text: `Staff in DB: ${emails || "none"}. You typed: ${email}` });
+    Swal.fire({
+      icon: "error",
+      title: "Invalid credentials",
+      text: "The email or password you entered is incorrect. Please try again.",
+    });
     return;
   }
 
