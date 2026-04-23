@@ -1,0 +1,293 @@
+/* ============================================================
+   Layout
+   ============================================================ */
+.app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+  text-align: left;
+}
+
+/* ============================================================
+   Navbar
+   ============================================================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: var(--text-h);
+  font-size: 18px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text-h);
+  background: var(--code-bg);
+}
+
+.nav-link-active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+/* ============================================================
+   Section header (title + action button)
+   ============================================================ */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+/* ============================================================
+   Messages
+   ============================================================ */
+.message {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+.message-loading {
+  background: var(--code-bg);
+  color: var(--text);
+}
+
+.message-error {
+  background: rgba(196, 33, 58, 0.08);
+  border: 1px solid rgba(196, 33, 58, 0.3);
+  color: #c4213a;
+}
+
+.app h1 {
+  margin: 0 0 4px;
+  font-size: 32px;
+  letter-spacing: -0.8px;
+}
+
+.app .subtitle {
+  color: var(--text);
+  margin: 0 0 24px;
+}
+
+.section {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.section h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 32px 0;
+}
+
+/* ============================================================
+   Form
+   ============================================================ */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  font: inherit;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.05s;
+}
+
+.btn:hover {
+  border-color: var(--accent-border);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  border-color: var(--accent);
+}
+
+.btn-danger {
+  color: #c4213a;
+  border-color: rgba(196, 33, 58, 0.3);
+}
+
+.btn-danger:hover {
+  background: rgba(196, 33, 58, 0.08);
+  border-color: #c4213a;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   Toolbar (search)
+   ============================================================ */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.toolbar .input {
+  flex: 1 1 240px;
+}
+
+/* ============================================================
+   Table
+   ============================================================ */
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.table thead th {
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover {
+  background: var(--accent-bg);
+}
+
+.table .actions {
+  white-space: nowrap;
+  display: flex;
+  gap: 6px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text);
+  padding: 24px;
+}
+
+.loading {
+  text-align: center;
+  color: var(--text);
+  padding: 16px;
+}
+
+/* Override the template's centered #root for this app */
+#root {
+  width: auto;
+  max-width: 100%;
+  text-align: left;
+  border-inline: 0;
+}
