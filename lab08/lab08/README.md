@@ -1,16 +1,40 @@
-# React + Vite
+# Laboratorio 8 - React Estudiantes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Contenido desarrollado en clase
 
-Currently, two official plugins are available:
+- Creación del proyecto con Vite.
+- Uso de `useState`.
+- Uso de `useEffect`.
+- Formularios controlados.
+- Eventos en React.
+- Renderizado de listas con `map()`.
+- Separación de lógica con `studentService.js`.
+- Conexión con Supabase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Nota importante
 
-## React Compiler
+Este laboratorio es guiado. El código no está optimizado para producción, su propósito es facilitar la comprensión de los conceptos básicos.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tarea: CRUD de Cursos en React
 
-## Expanding the ESLint configuration
+A partir del laboratorio desarrollado en clase, el estudiante deberá crear una nueva aplicación en React para administrar cursos.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Tabla: `cursos`
+
+`id`, `nombre`, `codigo`, `creditos`
+
+### Funcionalidades
+
+- Listar cursos
+- Agregar cursos
+- Editar cursos
+- Eliminar cursos
+- Buscar por nombre o código
+
+### Requisitos técnicos
+
+- Uso de `useState` y `useEffect`
+- Formulario controlado
+- Renderizado con `map()`
+- Separación en componentes
+- Creación de `courseService.js`

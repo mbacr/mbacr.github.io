@@ -4,6 +4,7 @@ import {
   guardarEstudiante,
   obtenerEstudiantes,
 } from "./estudianteService";
+import Courses from "./Courses";
 
 /*
   ============================================================
@@ -27,11 +28,11 @@ import {
 
 const initialForm = {
   id: "",
-  nombre: "",
-  apellido: "",
-  correo: "",
-  carrera: "",
-  fechaNac: "",
+  name: "",
+  lastName: "",
+  email: "",
+  career: "",
+  dob: "",
 };
 
 function App() {
@@ -119,7 +120,7 @@ function App() {
 
       await guardarEstudiante(form);
       setForm(initialForm);
-      await obtenerEstudiantes(search);
+      await loadStudents(search);
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -155,7 +156,7 @@ function App() {
 
     try {
       await eliminaEstudiante(id);
-      await obtenerEstudiantes(search);
+      await loadStudents(search);
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -179,7 +180,7 @@ function App() {
     Ejecuta la consulta usando el texto actual de búsqueda.
   */
   const handleSearch = async () => {
-    await obtenerEstudiantes(search);
+    await loadStudents(search);
   };
 
   /*
@@ -190,129 +191,153 @@ function App() {
   */
   const handleClearSearch = async () => {
     setSearch("");
-    await obtenerEstudiantes("");
+    await loadStudents("");
   };
 
   return (
-    <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "20px" }}>
-      <h1>Laboratorio 7 - React Estudiantes</h1>
-      <p>Introducción a React con separación de responsabilidades.</p>
+    <div className="app">
+      <h1>Laboratorio 8 — React Estudiantes</h1>
+      <p className="subtitle">
+        Introducción a React con separación de responsabilidades.
+      </p>
 
-      <hr />
+      <div className="section">
+        <h2>{form.id ? "Editar estudiante" : "Agregar estudiante"}</h2>
 
-      <h2>{form.id ? "Editar estudiante" : "Agregar estudiante"}</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-grid">
+            <input
+              className="input"
+              type="text"
+              name="name"
+              placeholder="Nombre"
+              value={form.name}
+              onChange={handleChange}
+            />
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ display: "grid", gap: "10px", marginBottom: "20px" }}>
-          <input
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            value={form.name}
-            onChange={handleChange}
-          />
+            <input
+              className="input"
+              type="text"
+              name="lastName"
+              placeholder="Apellido"
+              value={form.lastName}
+              onChange={handleChange}
+            />
 
-          <input
-            type="text"
-            name="apellido"
-            placeholder="Apellido"
-            value={form.lastName}
-            onChange={handleChange}
-          />
+            <input
+              className="input"
+              type="email"
+              name="email"
+              placeholder="Correo"
+              value={form.email}
+              onChange={handleChange}
+            />
 
-          <input
-            type="email"
-            name="correo"
-            placeholder="Correo"
-            value={form.email}
-            onChange={handleChange}
-          />
+            <input
+              className="input"
+              type="text"
+              name="career"
+              placeholder="Carrera"
+              value={form.career}
+              onChange={handleChange}
+            />
 
-          <input
-            type="text"
-            name="carrera"
-            placeholder="Carrera"
-            value={form.career}
-            onChange={handleChange}
-          />
+            <input
+              className="input full"
+              type="date"
+              name="dob"
+              value={form.dob}
+              onChange={handleChange}
+            />
+          </div>
 
-          <input
-            type="date"
-            name="fechaNac"
-            value={form.dob}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-          <button type="submit">
-            {form.id ? "Actualizar" : "Agregar"}
-          </button>
-          <button type="button" onClick={handleCancel}>
-            Cancelar
-          </button>
-        </div>
-      </form>
-
-      <hr />
-
-      <h2>Consulta de estudiantes</h2>
-
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-        <input
-          type="text"
-          placeholder="Buscar por nombre o apellido"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
-        <button onClick={handleSearch}>Buscar</button>
-        <button onClick={handleClearSearch}>Limpiar</button>
+          <div className="button-row">
+            <button type="submit" className="btn btn-primary">
+              {form.id ? "Actualizar" : "Agregar"}
+            </button>
+            <button type="button" className="btn" onClick={handleCancel}>
+              Cancelar
+            </button>
+          </div>
+        </form>
       </div>
 
-      {loading ? (
-        <p>Cargando estudiantes...</p>
-      ) : (
-        <table
-          border="1"
-          cellPadding="8"
-          style={{ width: "100%", borderCollapse: "collapse" }}
-        >
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Correo</th>
-              <th>Carrera</th>
-              <th>Fecha Nacimiento</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.length === 0 ? (
-              <tr>
-                <td colSpan="6">No hay estudiantes registrados</td>
-              </tr>
-            ) : (
-              students.map((student) => (
-                <tr key={student.id}>
-                  <td>{student.name}</td>
-                  <td>{student.lastName}</td>
-                  <td>{student.email}</td>
-                  <td>{student.career}</td>
-                  <td>{student.dob || ""}</td>
-                  <td>
-                    <button onClick={() => handleEdit(student)}>Editar</button>{" "}
-                    <button onClick={() => handleDelete(student.id)}>
-                      Eliminar
-                    </button>
-                  </td>
+      <div className="section">
+        <h2>Consulta de estudiantes</h2>
+
+        <div className="toolbar">
+          <input
+            className="input"
+            type="text"
+            placeholder="Buscar por nombre o apellido"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <button className="btn" onClick={handleSearch}>
+            Buscar
+          </button>
+          <button className="btn" onClick={handleClearSearch}>
+            Limpiar
+          </button>
+        </div>
+
+        {loading ? (
+          <p className="loading">Cargando estudiantes...</p>
+        ) : (
+          <div className="table-wrap">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Correo</th>
+                  <th>Carrera</th>
+                  <th>Fecha Nacimiento</th>
+                  <th>Acciones</th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      )}
+              </thead>
+              <tbody>
+                {students.length === 0 ? (
+                  <tr>
+                    <td className="empty" colSpan="6">
+                      No hay estudiantes registrados
+                    </td>
+                  </tr>
+                ) : (
+                  students.map((student) => (
+                    <tr key={student.id}>
+                      <td>{student.name}</td>
+                      <td>{student.lastName}</td>
+                      <td>{student.email}</td>
+                      <td>{student.career}</td>
+                      <td>{student.dob || ""}</td>
+                      <td className="actions">
+                        <button
+                          className="btn btn-sm"
+                          onClick={() => handleEdit(student)}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          className="btn btn-sm btn-danger"
+                          onClick={() => handleDelete(student.id)}
+                        >
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      <hr className="section-divider" />
+
+      <Courses />
     </div>
   );
 }

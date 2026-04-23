@@ -43,11 +43,11 @@ const COLUMNAS_MOSTRAR = "id, name, lastName, email, career, dob";
   - Estandarizar inserts y updates
 */
 const mapEstudiantePayload = (estudiante) => ({
-  nombre: estudiante.nombre?.trim() || "",
-  apellido: estudiante.apellido?.trim() || "",
-  correo: estudiante.correo?.trim() || "",
-  carrera: estudiante.carrera?.trim() || "",
-  fechaNac: estudiante.fechaNac || null,
+  name: estudiante.name?.trim() || "",
+  lastName: estudiante.lastName?.trim() || "",
+  email: estudiante.email?.trim() || "",
+  career: estudiante.career?.trim() || "",
+  dob: estudiante.dob || null,
 });
 
 
